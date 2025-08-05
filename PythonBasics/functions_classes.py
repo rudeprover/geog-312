@@ -41,6 +41,7 @@ class Point:
     def __str__(self):
         return f"{self.name or 'Point'} ({self.lat}, {self.long})" 
     
+    #Required : pip install haversine
     def distance_to(self, other_point):
         return haversine(
             self.latitude, self.longitude, other_point.latitude, other_point.longitude)
@@ -54,7 +55,19 @@ point1 = Point(35.6895, 139.6917, "Tokyo")
 print(point1)
 
 #Use move function 
-
 point1.move(1,2)
-
 print(f"After moving in a certain direction we have Point new coordinates : {point1}")
+
+
+#Last question : making a rectangle class which itself uses objects from another class
+class Rectangle:
+    def __init__(self, bottom_left : Point, top_right : Point):
+        self.bottom_left = bottom_left
+        self.top_right = top_right
+
+    def area(self) -> float:
+        height = self.top_right.lat - self.bottom_left.lat
+        width = self.top_right.long - self.bottom_left.long
+        return width*height
+    
+
